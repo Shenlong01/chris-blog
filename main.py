@@ -15,12 +15,12 @@ import os
 app = Flask(__name__)
 # load_dotenv("C:/Users/chris/OneDrive/100DaysOfCode/EnvironmentVariables/.env")
 # app.config['SECRET_KEY'] = os.getenv("MyBlogSecretKey")
-app.config['SECRET_KEY'] = os.environ.get("MyBlogSecretKey")
+app.config['SECRET_KEY'] = os.environ.get("BLOG_SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 

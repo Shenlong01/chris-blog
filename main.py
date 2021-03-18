@@ -4,15 +4,17 @@ from flask_ckeditor import CKEditor
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-# from sqlalchemy import Table, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+load_dotenv("C:/Users/chris/OneDrive/100DaysOfCode/EnvironmentVariables/.env")
+app.config['SECRET_KEY'] = os.getenv("MyBlogSecretKey")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
